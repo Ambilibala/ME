@@ -24,13 +24,15 @@ router.post("/:eventId/register", async (req: Request, res: Response) => {
         // Check if event exists
         const event = await Event.findById(eventId);
         if (!event) {
-            return res.status(404).json({ error: "Event not found" });
+            res.status(404).json({ error: "Event not found" });
+            return;
         }
 
         // Check if volunteer is already registered
         const existingRegistration = await EventRegistration.findOne({ volunteer: volunteerId, event: eventId });
         if (existingRegistration) {
-            return res.status(400).json({ error: "Volunteer already registered for this event" });
+            res.status(400).json({ error: "Volunteer already registered for this event" });
+            return;
         }
 
         // Register the volunteer

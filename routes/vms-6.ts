@@ -12,7 +12,8 @@ router.patch("/:eventId", async (req: Request, res: Response) => {
         const updatedEvent = await Event.findOneAndUpdate({ eventId }, updateData, { new: true });
 
         if (!updatedEvent) {
-            return res.status(404).json({ error: "Event not found" });
+            res.status(404).json({ error: "Event not found" });
+            return;
         }
 
         console.log("✅ Event updated successfully:", updatedEvent);
