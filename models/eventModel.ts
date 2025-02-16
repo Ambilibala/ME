@@ -1,4 +1,4 @@
-infermport mongoose, { Document, Schema, Model } from "mongoose";
+import mongoose, { Document, Schema, Model } from "mongoose";
 
 // Define an interface for the event schema
 interface IEvent extends Document {
